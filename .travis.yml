@@ -6,5 +6,11 @@ services:
 before_install:
   - docker build -t aukhatov/centos-java:8u201-b09 .
 
+before_script:
+- echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+
 script:
   - docker run --rm -it aukhatov/centos-java:8u201-b09 java -version
+
+script:
+  - docker push aukhatov/centos-java:8u201-b09
