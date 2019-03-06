@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t aukhatov/centos-java:8u201-b09 .
+
+script:
+  - docker run --rm -it aukhatov/centos-java:8u201-b09 java -version
