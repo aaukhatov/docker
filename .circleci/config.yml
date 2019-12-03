@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  docker-build:
+    machine: true
+    steps:
+      - checkout
+      - run: |
+            if [[ -z "$CIRCLE_TAG" ]]; then
+                circleci-agent step halt
+            fi
+      - run:
+          name: "Build Docker Image"
+          command: docker build -t aukhatov/java:${CIRCLE_TAG}-centos .
+      - run:
+          name: "Docker login"
+          command: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+      - run:
+          name: "Push Docker Image"
+          command: docker push aukhatov/java:${CIRCLE_TAG}-centos
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - docker-build:
+          filters:
+            branches:
+              only: /^java-centos/
+            tags:
+              only: /.*/

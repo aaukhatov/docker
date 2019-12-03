@@ -1,2 +1,3 @@
-# centos-java [![Build Status](https://travis-ci.org/aukhatov/docker-centos-java.svg?branch=master)](https://travis-ci.org/aukhatov/docker-centos-java)
-Docker image with Java by CentOS
+# Docker Image for Java Apps
+
+This Docker images based on CentOS v7.
