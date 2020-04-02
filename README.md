@@ -1,2 +1,2 @@
-# Base Docker Image Template
+# Apache Active MQ
 
