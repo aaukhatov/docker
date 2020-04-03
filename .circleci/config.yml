@@ -10,13 +10,13 @@ jobs:
             fi
       - run:
           name: "Build Docker Image"
-          command: echo "docker build -t aukhatov/activemq:${CIRCLE_TAG} ."
+          command: docker build -t aukhatov/activemq:${CIRCLE_TAG} .
       - run:
           name: "Docker login"
           command: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run:
           name: "Push Docker Image"
-          command: echo "docker push aukhatov/activemq:${CIRCLE_TAG}"
+          command: docker push aukhatov/activemq:${CIRCLE_TAG}
 
 workflows:
   version: 2
